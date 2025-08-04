@@ -1,0 +1,40 @@
+The idea to to perform this analysis, initiated with the objective to the identify pleitropyc SNPs 
+((i.e., variants associated with multiple distinct traits) using the GWAS Catalog summary statistics, 
+and examine trait sharing per variant). However, without limiting myself to shared variants, 
+I decided to study deeper a single trait at the time (e.g. Alzheimer's disease). 
+
+The source code use to perform each single analysis if provide with details in the code file. 
+
+First, download the data from database source
+
+- Official complete and updated GWAS Catalog associations file is stored here:
+  - URL: [https://www.ebi.ac.uk/gwas/api/search/downloads/alternative](https://www.ebi.ac.uk/gwas/api/search/downloads/alternative)
+  - File: `gwas_catalog_v1.0.2-associations_e105_r2024-05-10.tsv` (or latest)
+
+Download and place it in your working directory as (I would recommend to to keep it on you working directory/folder):
+
+```bash
+wget -O gwas_associations.tsv "https://www.ebi.ac.uk/gwas/api/search/downloads/alternative"
+```
+
+Often for further analysis you will need harmonized GWAS data
+
+Every day, a list of all harmonized GWAS studies gets updated. You can download it from the following link:
+
+[Download Harmonized Studies List](https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt)
+
+You can simply click the link above and save the file to your computer.
+
+or, if you prefer using the terminal, you can download it with `curl` or `wget`:
+  - Using `curl`:
+    ```bash
+    curl -O https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt
+    ```
+  - Using `wget`:
+    ```bash
+    wget https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt
+    ```
+
+Formatted files are harmonized summary statistics for GWAS studies. They’ve been cleaned and standardized, 
+so all the data (like SNP identifiers and p-values) is consistent across studies. 
+This makes them easier to work with for your analysis.
