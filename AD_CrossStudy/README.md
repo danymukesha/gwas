@@ -118,5 +118,6 @@ in AD GWAS.
 > for visualization. The complete analysis pipeline, including scripts
 > and summary outputs, is available upon request.
 
-source codee: `analysis_AD.R`
+source code: `analysis_AD.R`
+
 
