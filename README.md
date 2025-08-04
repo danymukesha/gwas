@@ -1,38 +1,48 @@
-The idea to to perform this analysis, initiated with the objective to the identify pleitropyc SNPs (i.e., variants associated 
-with multiple distinct traits) using the GWAS Catalog summary statistics, and examine trait sharing per variant). However, 
-without limiting myself to shared variants, I decided to study deeper a single trait at the time (e.g. Alzheimer's disease). 
+# GWAS pleiotropy analysis: Study setup
 
-The source code use to perform each single analysis if provide with details in the code file. 
+The goal of this analysis is to identify pleiotropic SNPs (variants associated with multiple traits) using the GWAS Catalog summary statistics, 
+focusing on how traits might be shared for each variant. Initially, I planned to investigate pleiotropy across multiple traits, but I decided 
+to dig deeper into a single trait (e.g., Alzheimer's Disease) to provide a more focused study.
 
-First, download the data from database source
+The source code used for the analysis is included in the code file. Please refer to it for specific details on how each analysis step is performed.
 
-- Official complete and updated GWAS Catalog associations file is stored here:
-  - URL: [https://www.ebi.ac.uk/gwas/api/search/downloads/alternative](https://www.ebi.ac.uk/gwas/api/search/downloads/alternative)
-  - File: `gwas_catalog_v1.0.2-associations_e105_r2024-05-10.tsv` (or latest)
+## Step 1: Download the GWAS Catalog data
 
-Download and place it in your working directory as (I would recommend to keep it on your working directory/folder):
+### Official GWAS Catalog associations file
+
+To start, you will need to download the most complete and up-to-date GWAS Catalog associations file. You can get it from the official source here:
+
+* **URL**: [GWAS Catalog associations file](https://www.ebi.ac.uk/gwas/api/search/downloads/alternative)
+* **File**: `gwas_catalog_v1.0.2-associations_e105_r2024-05-10.tsv` (or the latest version)
+
+You can download the file to your working directory with the following command:
 
 ```bash
 wget -O gwas_associations.tsv "https://www.ebi.ac.uk/gwas/api/search/downloads/alternative"
 ```
 
-Often for further analysis you will need harmonized GWAS data
+### Harmonized GWAS Data
 
-Every day, a list of all harmonized GWAS studies gets updated. You can download it from the following link:
+For further analysis, you will often need harmonized GWAS data. This data is updated daily, and you can download the latest list of harmonized studies
+from the following link:
 
 [Download Harmonized Studies List](https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt)
 
-You can simply click the link above and save the file to your computer.
+You can download it manually by clicking the link above, or use the terminal with either of the following commands:
 
-or, if you prefer using the terminal, you can download it with `curl` or `wget`:
-  - Using `curl`:
-    ```bash
-    curl -O https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt
-    ```
-  - Using `wget`:
-    ```bash
-    wget https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt
-    ```
+* **Using `curl`**:
 
-Formatted files are harmonized summary statistics for GWAS studies. They’ve been cleaned and standardized, so all the data (like SNP identifiers and p-values) is consistent across studies. 
-This makes them easier to work with for your analysis.
+  ```bash
+  curl -O https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt
+  ```
+
+* **Using `wget`**:
+
+  ```bash
+  wget https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt
+  ```
+
+> Formatted files are harmonized summary statistics from GWAS studies. These files are cleaned and standardized to ensure consistency across datasets,
+> making them easier to work with for your analysis. The data includes key information such as SNP identifiers and p-values that have been harmonized
+> across studies, which simplifies further steps like meta-analysis or functional annotation.
+
