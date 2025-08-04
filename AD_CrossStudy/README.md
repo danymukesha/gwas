@@ -20,7 +20,7 @@ replicated (≥7 studies). Cross-trait pleiotropy was evaluated by
 identifying AD-associated SNPs that also showed associations with non-AD
 traits. Temporal discovery trends and population diversity were analyzed
 to assess the maturity and representativeness of AD genetics
-research[5][6].
+research.
 
 **Results:** Of 25,279 unique AD-associated SNPs, 95.6% (24,159) were
 reported in only single studies, while just 0.6% (150) showed high
@@ -118,4 +118,6 @@ in AD GWAS.
 > for visualization. The complete analysis pipeline, including scripts
 > and summary outputs, is available upon request.
 
-source codee: `analysis_AD.R`
+source code: `analysis_AD.R`
+
+
