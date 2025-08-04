@@ -46,3 +46,37 @@ You can download it manually by clicking the link above, or use the terminal wit
 > making them easier to work with for your analysis. The data includes key information such as SNP identifiers and p-values that have been harmonized
 > across studies, which simplifies further steps like meta-analysis or functional annotation.
 
+---
+
+## Step 2: Running the GWAS meta-analysis
+
+Once the GWAS Catalog data and harmonized data have been downloaded, the analysis will proceed with reading the GWAS files, checking for missing columns,
+and performing an inverse-variance weighted meta-analysis. The analysis includes:
+
+1. **Loading GWAS files**: by reading each file using `fread` and checking for the presence of required columns.
+3. **Meta-analysis**: we perfom an inverse-variance weighted meta-analysis to combine results from multiple studies.
+4. **Missing columns report**: any missing required columns will be logged in a report file for troubleshooting.
+
+---
+
+## Step 3: GWAS pleiotropy analysis - Focus on Alzheimer's disease
+
+The next objective of the analysis is to investigate the pleiotropy of SNPs; i.e., identify variants that are associated with multiple traits. 
+While initially the intention was to explore pleiotropy across multiple traits, we focus here on **Alzheimer's Disease (AD)** as a more targeted study.
+
+In this analysis, we will examine how different traits might share associations with common SNPs. This will help identify potential pleiotropic variants 
+that could influence the development of AD as well as other traits.
+
+The following analysis steps will be performed:
+
+* **Data processing**: we load and clean GWAS summary statistics.
+* **Pleiotropy identification**: we search for SNPs that overlap between AD and other traits.
+* **Final reporting**: in the end, we aggregate data across multiple studies to identify consistent findings.
+
+---
+
+## Step 4: Further exploration and functional annotation
+
+Once the meta-analysis is complete, the next steps will include functional annotation of the identified SNPs and further investigation of the biological 
+significance of pleiotropic variants. Functional annotation could include checking for overlaps with known regulatory regions, pathways, or protein-coding genes.
+
