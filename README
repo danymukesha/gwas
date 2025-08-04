@@ -1,7 +1,6 @@
-The idea to to perform this analysis, initiated with the objective to the identify pleitropyc SNPs 
-((i.e., variants associated with multiple distinct traits) using the GWAS Catalog summary statistics, 
-and examine trait sharing per variant). However, without limiting myself to shared variants, 
-I decided to study deeper a single trait at the time (e.g. Alzheimer's disease). 
+The idea to to perform this analysis, initiated with the objective to the identify pleitropyc SNPs (i.e., variants associated 
+with multiple distinct traits) using the GWAS Catalog summary statistics, and examine trait sharing per variant). However, 
+without limiting myself to shared variants, I decided to study deeper a single trait at the time (e.g. Alzheimer's disease). 
 
 The source code use to perform each single analysis if provide with details in the code file. 
 
@@ -11,7 +10,7 @@ First, download the data from database source
   - URL: [https://www.ebi.ac.uk/gwas/api/search/downloads/alternative](https://www.ebi.ac.uk/gwas/api/search/downloads/alternative)
   - File: `gwas_catalog_v1.0.2-associations_e105_r2024-05-10.tsv` (or latest)
 
-Download and place it in your working directory as (I would recommend to to keep it on you working directory/folder):
+Download and place it in your working directory as (I would recommend to keep it on your working directory/folder):
 
 ```bash
 wget -O gwas_associations.tsv "https://www.ebi.ac.uk/gwas/api/search/downloads/alternative"
@@ -35,6 +34,5 @@ or, if you prefer using the terminal, you can download it with `curl` or `wget`:
     wget https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt
     ```
 
-Formatted files are harmonized summary statistics for GWAS studies. They’ve been cleaned and standardized, 
-so all the data (like SNP identifiers and p-values) is consistent across studies. 
-This makes them easier to work with for your analysis.
+Formatted files are harmonized summary statistics for GWAS studies. They’ve been cleaned and standardized, so all the data (like SNP 
+identifiers and p-values) is consistent across studies. This makes them easier to work with for your analysis.
