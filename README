@@ -34,5 +34,5 @@ or, if you prefer using the terminal, you can download it with `curl` or `wget`:
     wget https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/harmonised_list.txt
     ```
 
-Formatted files are harmonized summary statistics for GWAS studies. They’ve been cleaned and standardized, so all the data (like SNP 
-identifiers and p-values) is consistent across studies. This makes them easier to work with for your analysis.
+Formatted files are harmonized summary statistics for GWAS studies. They’ve been cleaned and standardized, so all the data (like SNP identifiers and p-values) is consistent across studies. 
+This makes them easier to work with for your analysis.
