@@ -183,3 +183,5 @@ cat("Harmonized files for meta-analysis:\n", paste(harmonized_files, collapse = 
 
 # Downloaded and harmonized 235 studies
 # Only 22 studies were correctly and completely harmonized.
+
+save(harmonized_files, file = "harmonized_files.Rdata")

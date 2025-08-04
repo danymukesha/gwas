@@ -1,9 +1,9 @@
-#Title: GWAS data processing and meta-analysis
-#Description: In this part, we processes multiple GWAS (Genome-Wide Association Study) files, 
+# Title: GWAS data processing and meta-analysis
+# Description: In this part, we processes multiple GWAS (Genome-Wide Association Study) files,
 # checks for missing columns, performs data cleaning, and executes an inverse-variance weighted
-# meta-analysis to combine results across different studies. The script utilizes parallel 
-# processing and progress tracking to efficiently handle large data-sets. Missing column details 
-# are reported in a separate text file for troubleshooting. The final meta-analysis results, 
+# meta-analysis to combine results across different studies. The script utilizes parallel
+# processing and progress tracking to efficiently handle large data-sets. Missing column details
+# are reported in a separate text file for troubleshooting. The final meta-analysis results,
 # including beta coefficients, standard errors, and p-values, are saved to a text file for
 # further interpretation.
 if (!requireNamespace("data.table", quietly = TRUE)) install.packages("data.table")
@@ -29,7 +29,7 @@ file_paths <- harmonized_files[grep("harmonized", harmonized_files)]
 
 missing_columns_report <- list()
 
-read_gwas <- function(file) {
+read_gwas <- function(file, study_name) {
     dt <- fread(file, header = TRUE)
     required_cols <- c("SNP", "CHR", "BP", "A1", "A2", "BETA", "SE", "P")
     missing_cols <- setdiff(required_cols, colnames(dt))
@@ -48,6 +48,7 @@ read_gwas <- function(file) {
 
     dt[, A1 := toupper(A1)]
     dt[, A2 := toupper(A2)]
+    dt$study_name <- study_name
     return(dt)
 }
 
@@ -57,9 +58,24 @@ with_progress({
     p <- progressor(along = file_paths)
     gwas_list <- future_map(file_paths, function(file) {
         p()
-        read_gwas(file)
+        study_name <- sub(".*harmonized_(.*)\\.txt", "\\1", file)
+        read_gwas(file, study_name)
     })
 })
+
+if (length(gwas_list) != length(file_paths)) {
+    stop("The length of gwas_list and file_paths do not match!")
+}
+
+gwas_list_named <- Map(function(file_path, gwas_data) {
+    data <- gwas_data
+    data$file_path <- file_path
+    return(data)
+}, file_paths, gwas_list)
+
+names(gwas_list_named) <- gsub("gwas_data/(.*)_harmonized.txt", "\\1", file_paths)
+
+saveRDS(gwas_list, file = "gwas_list.rds", compress = "xz")
 
 missing_report_df <-
     do.call(rbind, lapply(missing_columns_report, function(x) {
