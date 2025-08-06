@@ -18,7 +18,7 @@ unregister_dopar <- function() {
 
 ## Data preparation & filtering ====
 
-gwas <- fread("../gwas_associations.tsv", sep = "\t", header = TRUE, quote = "")
+gwas <- fread("./gwas_associations.tsv", sep = "\t", header = TRUE, quote = "")
 
 # AD and related traits
 ad_traits <- c(
@@ -88,11 +88,24 @@ replication_results <- perform_replication_analysis(ad_gwas)
 replication_summary <- replication_results[, .N, by = replication_status][order(-N)]
 print(replication_summary)
 
+replication_results |>
+    dplyr::filter(replication_status %in% c(
+        "High_replication"
+        # ,"Moderate_replication"
+    )) |>
+    dplyr::pull(studies) |>
+    paste(collapse = ",") |>
+    strsplit(split = ",") |>
+    unlist() |>
+    unique() -> good_ad_studies
+
+write_rds(good_ad_studies, file = "good_ad_studies.rds")
+
 ## Temporal discovery analysis ====
 
 perform_temporal_analysis <- function(data) {
     data$year <- as.numeric(substr(data$DATE, 1, 4))
-    data_clean <- data[!is.na(year) & year >= 2020 & year <= 2025]
+    data_clean <- data[!is.na(year) & year >= 2000 & year <= 2025]
     temporal_data <- data_clean[, .(
         total_associations = .N,
         unique_snps = length(unique(SNPS)),
