@@ -1,0 +1,18 @@
+Warning: Missing columns in file: gwas_data/GCST90475494_harmonized.txt                                
+Missing columns: BETA 
+Warning: Missing columns in file: gwas_data/GCST90475495_harmonized.txt 
+Missing columns: BETA 
+Warning: Missing columns in file: gwas_data/GCST90475496_harmonized.txt 
+Missing columns: BETA 
+Warning: Missing columns in file: gwas_data/GCST90475550_harmonized.txt 
+Missing columns: BETA 
+Warning: Missing columns in file: gwas_data/GCST90475542_harmonized.txt 
+Missing columns: BETA 
+Warning: Missing columns in file: gwas_data/GCST90475543_harmonized.txt 
+Missing columns: BETA 
+Warning: Missing columns in file: gwas_data/GCST90475248_harmonized.txt 
+Missing columns: BETA 
+Warning: Missing columns in file: gwas_data/GCST90475249_harmonized.txt 
+Missing columns: BETA 
+Warning: Missing columns in file: gwas_data/GCST90475484_harmonized.txt 
+Missing columns: BETA 

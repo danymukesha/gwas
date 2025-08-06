@@ -38,8 +38,9 @@ hits <- alz_gwas |>
 
 fwrite(hits, "alz_hits.tab", sep = "\t") # read with fread()
 
+cutoff <- 50
 alz_gwas$log10Praw <- -log10(alz_gwas$P)
-alz_gwas$log10P <- ifelse(alz_gwas$log10Praw > 40, 40, alz_gwas$log10Praw)
+alz_gwas$log10P <- ifelse(alz_gwas$log10Praw > cutoff, cutoff, alz_gwas$log10Praw)
 alz_gwas$Plevel <- NA
 alz_gwas$Plevel[alz_gwas$P < 5E-08] <- "possible"
 alz_gwas$Plevel[alz_gwas$P < 5E-09] <- "likely"
@@ -90,7 +91,7 @@ thisManhattan <- ggplot(plotting, aes(x = BPcum, y = log10P)) +
         expand = c(0.01, 0)
     ) +
     scale_y_continuous(
-        expand = c(0, 0) # , limits = c(5, 620)
+        expand = c(0, 0), limits = c(5, cutoff + 2)
     ) +
     geom_point(
         data = subset(plotting, is_highlight == "yes" & Plevel == "likely"),
@@ -123,5 +124,22 @@ thisManhattan <- ggplot(plotting, aes(x = BPcum, y = log10P)) +
 
 ggsave(
     filename = paste0("figures/alz_gwas", ".manhattanPlot.png"),
-    plot = thisManhattan, width = 10, height = 5, dpi = 300
+    plot = thisManhattan +
+        annotate("point",
+            x = max(plotting$BPcum) * 0.90, y = cutoff - 1,
+            color = "red", size = 2
+        ) +
+        annotate("text",
+            x = max(plotting$BPcum) * 0.91, y = cutoff - 1,
+            label = "P < 5e-9 (likely)", hjust = 0, size = 2.8
+        ) +
+        annotate("point",
+            x = max(plotting$BPcum) * 0.90, y = cutoff - 2.2,
+            color = "orange", size = 2
+        ) +
+        annotate("text",
+            x = max(plotting$BPcum) * 0.91, y = cutoff - 2.2,
+            label = "P < 5e-8 (possible)", hjust = 0, size = 2.8
+        ),
+    width = 10, height = 5, dpi = 300
 )
