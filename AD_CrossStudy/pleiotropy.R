@@ -68,7 +68,7 @@ p1 <- ggplot(pleiotropy_table, aes(x = OTHER_PVALUE_MLOG, y = AD_PVALUE_MLOG)) +
     geom_text(data = top_snp_points, aes(label = SNPS), vjust = 1.8, hjust = 0.4, size = 3) +
     labs(
         x = "Non-AD Trait [-log(p-value)]", y = "AD Trait [-log(p-value)]",
-        title = "Pleiotropy between AD and Non-AD Traits",
+        title = "A. Pleiotropy between AD and Non-AD Traits",
         subtitle = "Top SNPs highlighted with distinct shapes",
         caption = "Data from GWAS studies", color = "Significance Level",
         shape = "Key SNPs"
